@@ -1,0 +1,91 @@
+name: Fix
+description: Fix a bug
+title: "fix: "
+labels:
+  - fix
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `fix: <description>`
+        - `fix(<scope>): <description>`
+        - `fix!: <description>` or `fix(<scope>)!: <description>` if it is a breaking change
+
+        When commiting code locally, execute `git commit -m "<crafted title>"`
+
+  - type: textarea
+    id: current-behaviour
+    attributes:
+      label: Current behaviour
+      description: Describe what currently happens, include any error messages or logs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected behaviour
+      description: Describe what should happen instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List the steps that reproduce the bug.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Describe where the bug occurs, such as the branch, workflow run, AWS account or region.
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed-fix
+    attributes:
+      label: Proposed fix
+      description: Describe the fix you will make, if known.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: List the conditions that must be met for this fix to be complete.
+      placeholder: |
+        - [ ] ... Work in progress
+        - [x] ... Done
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Is this a breaking change?
+      description: If yes, include `!` in the title.
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-change-details
+    attributes:
+      label: Breaking change details
+      description: If this is a breaking change, describe what breaks and how users should migrate.
+    validations:
+      required: false

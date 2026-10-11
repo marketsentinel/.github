@@ -1,0 +1,68 @@
+name: Refactor
+description: Restructure code without changing behaviour
+title: "refactor: "
+labels:
+  - refactor
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `refactor: <description>`
+        - `refactor(<scope>): <description>`
+        - `refactor!: <description>` or `refactor(<scope>)!: <description>` if it is a breaking change
+
+        When commiting code locally, execute `git commit -m "<crafted title>"`
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is wrong with the current structure, and why does it need to change?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-structure
+    attributes:
+      label: Current structure
+      description: Describe how the code is structured now.
+    validations:
+      required: true
+
+  - type: textarea
+    id: target-structure
+    attributes:
+      label: Target structure
+      description: Describe how you will restructure the code.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk
+      description: Describe what could break and how you will confirm behaviour is unchanged.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Is this a breaking change?
+      description: If yes, include `!` in the title.
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-change-details
+    attributes:
+      label: Breaking change details
+      description: If this is a breaking change, describe what breaks and how users should migrate.
+    validations:
+      required: false

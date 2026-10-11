@@ -1,0 +1,71 @@
+name: Feature
+description: Implement or update a feature
+title: "feat: "
+labels:
+  - feat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `feat: <description>`
+        - `feat(<scope>): <description>`
+        - `feat!: <description>` or `feat(<scope>)!: <description>` if it is a breaking change
+
+        When commiting code locally, execute `git commit -m "<crafted title>"`
+
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Requirement
+      description: What requirement does this feature fulfil and which stakeholder is it for?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature you will add.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: List the conditions that must be met for this feature to be considered delivered.
+      placeholder: |
+        - [ ] ... Work in progress
+        - [x] ... Done
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Is this a breaking change?
+      description: If yes, include `!` in the title.
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-change-details
+    attributes:
+      label: Breaking change details
+      description: If this is a breaking change, describe what breaks and how users should migrate.
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Describe any other solutions you considered and why you did not choose them.
+    validations:
+      required: false

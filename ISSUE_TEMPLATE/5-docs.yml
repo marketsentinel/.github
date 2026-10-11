@@ -1,0 +1,37 @@
+name: Documentation
+description: Add, remove or edit documents
+title: "docs: "
+labels:
+  - docs
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `docs: <description>`
+        - `docs(<scope>): <description>`
+
+        When commiting code locally, execute `git commit -m "<crafted title>"
+
+  - type: input
+    id: document-locations
+    attributes:
+      label: Document locations
+      description: Provide the file paths, wiki pages or URLs of the documents.
+      placeholder: |
+        - Document 1 - https://github.com/marketsentinel/document1
+        - Document 2 - https://github.com/marketsentinel/document2
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Requirement
+      description: Describe what is missing, wrong or unclear.
+      placeholder: |
+        - Document 1 - Change title to XYZ
+        - Document 2 - Include process on how to request for exemptions
+    validations:
+      required: true

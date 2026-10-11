@@ -1,0 +1,64 @@
+name: Others
+description: Covers build, chore, ci, revert, style or test
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `<type>: <description>`
+        - `<type>(<scope>): <description>`
+        - `<type>!: <description>` or `<type>(<scope>)!: <description>` if it is a breaking change
+
+        When commiting code locally, execute `git commit -m "<crafted title>"`
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: Select the type of change.
+      options:
+        - "build:   changes to the build system or dependencies"
+        - "chore:   maintenance that doesn't change source or tests"
+        - "ci:      changes to CI/CD configuration and workflows"
+        - "revert:  reverts a previous commit"
+        - "style:   formatting only, no change to how the code behaves"
+        - "test:    add or correct tests"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: Describe the change. For a revert, give the URL of the pull request being reverted.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Is this a breaking change?
+      description: If yes, include `!` in the title.
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-change-details
+    attributes:
+      label: Breaking change details
+      description: If this is a breaking change, describe what breaks and how users should migrate.
+    validations:
+      required: false

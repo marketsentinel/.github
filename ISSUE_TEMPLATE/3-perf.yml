@@ -1,0 +1,76 @@
+name: Performance
+description: Improve performance without changing behaviour
+title: "perf: "
+labels:
+  - perf
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Craft the title in one of the following formats because it affects automated versioning:
+
+        - `perf: <description>`
+        - `perf(<scope>): <description>`
+        - `perf!: <description>` or `perf(<scope>)!: <description>` if it is a breaking change
+
+        When commiting code locally, execute `git commit -m "<crafted title>"`
+
+  - type: textarea
+    id: inefficiency
+    attributes:
+      label: Inefficiency
+      description: What is slow or resource-heavy, and what is the impact?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-measurement
+    attributes:
+      label: Current measurement
+      description: State the current performance, such as run time, memory use or cost.
+    validations:
+      required: true
+
+  - type: textarea
+    id: target-measurement
+    attributes:
+      label: Target measurement
+      description: State the performance we want to achieve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurement-method
+    attributes:
+      label: How is performance measured
+      description: Describe how you will measure the before and after, so the result can be repeated.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed improvement
+      description: Describe the change you will make.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Is this a breaking change?
+      description: If yes, include `!` in the title.
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-change-details
+    attributes:
+      label: Breaking change details
+      description: If this is a breaking change, describe what breaks and how users should migrate.
+    validations:
+      required: false
