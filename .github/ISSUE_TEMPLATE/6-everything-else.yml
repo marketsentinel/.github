@@ -10,7 +10,7 @@ body:
         - `<type>(<scope>): <description>`
         - `<type>!: <description>` or `<type>(<scope>)!: <description>` if it is a breaking change
 
-        When commiting code locally, execute `git commit -m "<crafted title>"`
+        When committing code locally, execute `git commit -m "<crafted title>" -m "Closes #<issue number>"`
 
   - type: dropdown
     id: type

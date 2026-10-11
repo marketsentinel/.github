@@ -12,7 +12,7 @@ body:
         - `docs: <description>`
         - `docs(<scope>): <description>`
 
-        When commiting code locally, execute `git commit -m "<crafted title>"
+        When committing code locally, execute `git commit -m "<crafted title>" -m "Closes #<issue number>"`
 
   - type: input
     id: document-locations

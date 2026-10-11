@@ -13,7 +13,7 @@ body:
         - `perf(<scope>): <description>`
         - `perf!: <description>` or `perf(<scope>)!: <description>` if it is a breaking change
 
-        When commiting code locally, execute `git commit -m "<crafted title>"`
+        When committing code locally, execute `git commit -m "<crafted title>" -m "Resolves #<issue number>"`
 
   - type: textarea
     id: inefficiency
