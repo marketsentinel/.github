@@ -13,7 +13,7 @@ body:
         - `fix(<scope>): <description>`
         - `fix!: <description>` or `fix(<scope>)!: <description>` if it is a breaking change
 
-        When commiting code locally, execute `git commit -m "<crafted title>"`
+        When committing code locally, execute `git commit -m "<crafted title>" -m "Fixes #<issue number>"`
 
   - type: textarea
     id: current-behaviour
