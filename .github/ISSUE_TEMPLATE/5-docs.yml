@@ -4,24 +4,28 @@ title: "docs: "
 labels:
   - docs
 body:
-  - type: markdown
+  - type: textarea
+    id: notice
     attributes:
+      label: Notice
+      description: The issue title and commit message affect the changelog. Read before submitting.
       value: |
-        Craft the title in one of the following formats because it affects automated versioning:
+        Craft the title in one of the following formats:
 
         - `docs: <description>`
-        - `docs(<scope>): <description>`
 
         When committing code locally, execute `git commit -m "<crafted title>" -m "Closes #<issue number>"`
 
-  - type: input
+        Useful guides:
+        - [How to make code changes](https://github.com/marketsentinel/library/wiki/guide_how-to-make-code-changes)
+
+  - type: textarea
     id: document-locations
     attributes:
       label: Document locations
       description: Provide the file paths, wiki pages or URLs of the documents.
-      placeholder: |
-        - Document 1 - https://github.com/marketsentinel/document1
-        - Document 2 - https://github.com/marketsentinel/document2
+      value: |
+        - <document name>: <file path, wiki page or URL>
     validations:
       required: true
 
@@ -30,8 +34,7 @@ body:
     attributes:
       label: Requirement
       description: Describe what is missing, wrong or unclear.
-      placeholder: |
-        - Document 1 - Change title to XYZ
-        - Document 2 - Include process on how to request for exemptions
+      value: |
+        - <document name>: <add, remove or edit> <what is missing, wrong or unclear, and what it should say>
     validations:
       required: true

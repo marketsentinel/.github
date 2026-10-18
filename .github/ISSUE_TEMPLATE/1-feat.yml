@@ -4,22 +4,29 @@ title: "feat: "
 labels:
   - feat
 body:
-  - type: markdown
+  - type: textarea
+    id: notice
     attributes:
+      label: Notice
+      description: The issue title and commit message affect automated versioning. Read before submitting.
       value: |
-        Craft the title in one of the following formats because it affects automated versioning:
+        Craft the title in one of the following formats:
 
         - `feat: <description>`
-        - `feat(<scope>): <description>`
-        - `feat!: <description>` or `feat(<scope>)!: <description>` if it is a breaking change
+        - `feat!: <description>` if it is a breaking change
 
         When committing code locally, execute `git commit -m "<crafted title>" -m "Closes #<issue number>"`
+
+        Useful guides:
+        - [How to make code changes](https://github.com/marketsentinel/library/wiki/guide_how-to-make-code-changes)
 
   - type: textarea
     id: requirement
     attributes:
       label: Requirement
-      description: What requirement does this feature fulfil and which stakeholder is it for?
+      description: The problem to solve and who it is for. Leave implementation details for "Proposed solution".
+      value: |
+        As a <who>, I want <what>, so that <why>.
     validations:
       required: true
 
@@ -27,7 +34,16 @@ body:
     id: solution
     attributes:
       label: Proposed solution
-      description: Describe the feature you will add.
+      description: How you will meet the requirement. If the change is simple and not breaking, replace the template with 'This is a simple change, no details required'.
+      value: |
+        **Approach:** <one or two sentences on how you will solve it>
+
+        **Changes:**
+        - <module, file or API affected and what changes>
+
+        **Risks / trade-offs:** <performance, security, compatibility, or 'None'>
+
+        **Testing:** <how you will verify it, e.g. unit, integration, manual>
     validations:
       required: true
 
@@ -35,22 +51,9 @@ body:
     id: acceptance-criteria
     attributes:
       label: Acceptance criteria
-      description: List the conditions that must be met for this feature to be considered delivered.
-      placeholder: |
-        - [ ] ... Work in progress
-        - [x] ... Done
-    validations:
-      required: true
-
-  - type: dropdown
-    id: breaking-change
-    attributes:
-      label: Is this a breaking change?
-      description: If yes, include `!` in the title.
-      options:
-        - "No"
-        - "Yes"
-      default: 0
+      description: List the conditions that must be met for this feature to be considered delivered. Mark `[x]` when a condition is met. If the change is simple and not breaking, replace the template with 'This is a simple change, no details required'.
+      value: |
+        - [ ] Given <context>, when <action>, then <expected result>
     validations:
       required: true
 
@@ -58,7 +61,11 @@ body:
     id: breaking-change-details
     attributes:
       label: Breaking change details
-      description: If this is a breaking change, describe what breaks and how users should migrate.
+      description: Required if the title includes `!`. Describe what breaks and how users should migrate.
+      value: |
+        **What breaks:** <API, config, behaviour or data format>
+        **Who is affected:** <users, services or downstream repos>
+        **Migration:** <steps users must take to upgrade>
     validations:
       required: false
 
@@ -67,5 +74,7 @@ body:
     attributes:
       label: Alternatives
       description: Describe any other solutions you considered and why you did not choose them.
+      value: |
+        - <alternative>: <why it was not chosen>
     validations:
       required: false

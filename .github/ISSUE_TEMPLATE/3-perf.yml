@@ -4,22 +4,31 @@ title: "perf: "
 labels:
   - perf
 body:
-  - type: markdown
+  - type: textarea
+    id: notice
     attributes:
+      label: Notice
+      description: The issue title and commit message affect automated versioning. Read before submitting.
       value: |
-        Craft the title in one of the following formats because it affects automated versioning:
+        Craft the title in one of the following formats:
 
         - `perf: <description>`
-        - `perf(<scope>): <description>`
-        - `perf!: <description>` or `perf(<scope>)!: <description>` if it is a breaking change
+        - `perf!: <description>` if it is a breaking change
 
         When committing code locally, execute `git commit -m "<crafted title>" -m "Resolves #<issue number>"`
+
+        Useful guides:
+        - [How to make code changes](https://github.com/marketsentinel/library/wiki/guide_how-to-make-code-changes)
 
   - type: textarea
     id: inefficiency
     attributes:
       label: Inefficiency
       description: What is slow or resource-heavy, and what is the impact?
+      value: |
+        **What is slow:** <operation, job, query or endpoint>
+        **Impact:** <who or what is affected, e.g. users waiting, pipeline delays, AWS cost>
+        **Frequency:** <how often it runs, e.g. per request, hourly, nightly>
     validations:
       required: true
 
@@ -28,6 +37,10 @@ body:
     attributes:
       label: Current measurement
       description: State the current performance, such as run time, memory use or cost.
+      value: |
+        **Metric:** <run time, memory, CPU, cost or other>
+        **Value:** <number and unit, e.g. p95 4.2 s, 1.8 GB, SGD 120/month>
+        **Conditions:** <data size, load or environment when measured>
     validations:
       required: true
 
@@ -36,6 +49,10 @@ body:
     attributes:
       label: Target measurement
       description: State the performance we want to achieve.
+      value: |
+        **Metric:** <same metric as Current measurement>
+        **Target:** <number and unit, e.g. p95 under 1 s>
+        **Why this target:** <SLA, budget or user need that sets it>
     validations:
       required: true
 
@@ -44,6 +61,14 @@ body:
     attributes:
       label: How is performance measured
       description: Describe how you will measure the before and after, so the result can be repeated.
+      value: |
+        **Tool:** <benchmark, profiler, CloudWatch metric or Cost Explorer>
+
+        **Steps:**
+        1. <step>
+        2. <step>
+
+        **Runs:** <number of runs and how results are combined, e.g. median of 5>
     validations:
       required: true
 
@@ -52,18 +77,12 @@ body:
     attributes:
       label: Proposed improvement
       description: Describe the change you will make.
-    validations:
-      required: true
-
-  - type: dropdown
-    id: breaking-change
-    attributes:
-      label: Is this a breaking change?
-      description: If yes, include `!` in the title.
-      options:
-        - "No"
-        - "Yes"
-      default: 0
+      value: |
+        **Root cause:** <why it is slow, if known>
+        **Approach:** <one or two sentences on how you will improve it>
+        **Changes:** <module, file or API affected and what changes>
+        **Trade-offs:** <e.g. memory for speed, readability, cost, or 'None'>
+        **Behaviour check:** <how you will confirm behaviour is unchanged>
     validations:
       required: true
 
@@ -71,6 +90,10 @@ body:
     id: breaking-change-details
     attributes:
       label: Breaking change details
-      description: If this is a breaking change, describe what breaks and how users should migrate.
+      description: Required if the title includes `!`. Describe what breaks and how users should migrate.
+      value: |
+        **What breaks:** <API, config, behaviour or data format>
+        **Who is affected:** <users, services or downstream repos>
+        **Migration:** <steps users must take to upgrade>
     validations:
       required: false

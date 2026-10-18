@@ -1,16 +1,22 @@
 name: Others
 description: Covers build, chore, ci, revert, style or test
+title: "<type>: "
 body:
-  - type: markdown
+  - type: textarea
+    id: notice
     attributes:
+      label: Notice
+      description: The issue title and commit message affect automated versioning. Read before submitting.
       value: |
-        Craft the title in one of the following formats because it affects automated versioning:
+        Craft the title in one of the following formats:
 
         - `<type>: <description>`
-        - `<type>(<scope>): <description>`
-        - `<type>!: <description>` or `<type>(<scope>)!: <description>` if it is a breaking change
+        - `<type>!: <description>` if it is a breaking change
 
         When committing code locally, execute `git commit -m "<crafted title>" -m "Closes #<issue number>"`
+
+        Useful guides:
+        - [How to make code changes](https://github.com/marketsentinel/library/wiki/guide_how-to-make-code-changes)
 
   - type: dropdown
     id: type
@@ -18,12 +24,12 @@ body:
       label: Type
       description: Select the type of change.
       options:
-        - "build:   changes to the build system or dependencies"
-        - "chore:   maintenance that doesn't change source or tests"
-        - "ci:      changes to CI/CD configuration and workflows"
-        - "revert:  reverts a previous commit"
-        - "style:   formatting only, no change to how the code behaves"
-        - "test:    add or correct tests"
+        - "build: changes to the build system or dependencies"
+        - "chore: maintenance that doesn't change source or tests"
+        - "ci: changes to CI/CD configuration and workflows"
+        - "revert: reverts a previous commit"
+        - "style: formatting only, no change to how the code behaves"
+        - "test: add or correct tests"
     validations:
       required: true
 
@@ -32,6 +38,9 @@ body:
     attributes:
       label: Problem
       description: Describe the problem.
+      value: |
+        **What is wrong:** <e.g. outdated dependency, failing workflow, flaky test, inconsistent formatting>
+        **Impact:** <who or what is affected, e.g. slow builds, blocked merges, security alert>
     validations:
       required: true
 
@@ -39,19 +48,12 @@ body:
     id: proposed-change
     attributes:
       label: Proposed change
-      description: Describe the change. For a revert, give the URL of the pull request being reverted.
-    validations:
-      required: true
-
-  - type: dropdown
-    id: breaking-change
-    attributes:
-      label: Is this a breaking change?
-      description: If yes, include `!` in the title.
-      options:
-        - "No"
-        - "Yes"
-      default: 0
+      description: Describe the change. For a revert, give the URL of the pull request being reverted. If the change is simple and not breaking, replace the template with 'This is a simple change, no details required'.
+      value: |
+        **Change:** <one or two sentences on what you will do>
+        **Files / config affected:** <e.g. package.json, .github/workflows/ci.yml, Dockerfile>
+        **Reverted PR:** <URL of the pull request being reverted, or 'N/A'>
+        **Verification:** <how you will confirm it works, e.g. CI run passes, tests pass locally>
     validations:
       required: true
 
@@ -59,6 +61,10 @@ body:
     id: breaking-change-details
     attributes:
       label: Breaking change details
-      description: If this is a breaking change, describe what breaks and how users should migrate.
+      description: Required if the title includes `!`. Describe what breaks and how users should migrate.
+      value: |
+        **What breaks:** <API, config, behaviour or data format>
+        **Who is affected:** <users, services or downstream repos>
+        **Migration:** <steps users must take to upgrade>
     validations:
       required: false

@@ -4,22 +4,36 @@ title: "fix: "
 labels:
   - fix
 body:
-  - type: markdown
+  - type: textarea
+    id: notice
     attributes:
+      label: Notice
+      description: The issue title and commit message affect automated versioning. Read before submitting.
       value: |
-        Craft the title in one of the following formats because it affects automated versioning:
+        Craft the title in one of the following formats:
 
         - `fix: <description>`
-        - `fix(<scope>): <description>`
-        - `fix!: <description>` or `fix(<scope>)!: <description>` if it is a breaking change
+        - `fix!: <description>` if it is a breaking change
 
         When committing code locally, execute `git commit -m "<crafted title>" -m "Fixes #<issue number>"`
+
+        Useful guides:
+        - [How to make code changes](https://github.com/marketsentinel/library/wiki/guide_how-to-make-code-changes)
 
   - type: textarea
     id: current-behaviour
     attributes:
       label: Current behaviour
       description: Describe what currently happens, include any error messages or logs.
+      value: |
+        **What happens:** <what you observe>
+
+        **Error / logs:**
+        ```
+        <paste error messages or log output, or 'None'>
+        ```
+
+        **Impact:** <who or what is affected, and how often it happens>
     validations:
       required: true
 
@@ -28,6 +42,10 @@ body:
     attributes:
       label: Expected behaviour
       description: Describe what should happen instead.
+      value: |
+        **Expected:** <what should happen>
+
+        **Reference:** <spec, docs or previous behaviour that defines this, or 'None'>
     validations:
       required: true
 
@@ -35,11 +53,11 @@ body:
     id: steps-to-reproduce
     attributes:
       label: Steps to reproduce
-      description: List the steps that reproduce the bug.
-      placeholder: |
-        1. ...
-        2. ...
-        3. ...
+      description: List the steps that reproduce the bug. If the fix is simple and not breaking, replace the template with 'This is a simple fix, no details required'.
+      value: |
+        1. <step>
+        2. <step>
+        3. <step where the bug appears>
     validations:
       required: true
 
@@ -47,38 +65,34 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Describe where the bug occurs, such as the branch, workflow run, AWS account or region.
+      description: Describe where the bug occurs, such as the branch, workflow run, AWS account or region. If the fix is simple and not breaking, replace the template with 'This is a simple fix, no details required'.
+      value: |
+        **Branch / version:** <branch, tag or commit>
+        **Workflow run:** <URL, if applicable>
+        **AWS account / region:** <account alias and region, if applicable>
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: proposed-fix
     attributes:
       label: Proposed fix
-      description: Describe the fix you will make, if known.
+      description: Describe the fix you will make. If the fix is simple and not breaking, replace the template with 'This is a simple fix, no details required'.
+      value: |
+        **Root cause:** <why the bug happens, if known>
+        **Approach:** <one or two sentences on how you will fix it>
+        **Changes:** <module, file or API affected and what changes>
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance criteria
-      description: List the conditions that must be met for this fix to be complete.
-      placeholder: |
-        - [ ] ... Work in progress
-        - [x] ... Done
-    validations:
-      required: true
-
-  - type: dropdown
-    id: breaking-change
-    attributes:
-      label: Is this a breaking change?
-      description: If yes, include `!` in the title.
-      options:
-        - "No"
-        - "Yes"
-      default: 0
+      description: List the conditions that must be met for this fix to be complete. Mark `[x]` when a condition is met. If the fix is simple and not breaking, replace the template with 'This is a simple fix, no details required'.
+      value: |
+        - [ ] Given <context>, when <action>, then <expected result>
+        - [ ] A test reproduces the bug and passes with the fix
     validations:
       required: true
 
@@ -86,6 +100,10 @@ body:
     id: breaking-change-details
     attributes:
       label: Breaking change details
-      description: If this is a breaking change, describe what breaks and how users should migrate.
+      description: Required if the title includes `!`. Describe what breaks and how users should migrate.
+      value: |
+        **What breaks:** <API, config, behaviour or data format>
+        **Who is affected:** <users, services or downstream repos>
+        **Migration:** <steps users must take to upgrade>
     validations:
       required: false
